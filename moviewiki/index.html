@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="indexcss.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .imgcls {
+            object-fit: fill;
+        }
+    </style>
+</head>
+
+<script>
+    window.onload = function() {
+        myFunction();
+    }
+
+    function handleErrors(response) {
+        if (!response.ok) {
+            var main = document.getElementsByClassName("main");
+            while (main[0].firstChild) {
+                main[0].removeChild(main[0].firstChild);
+            }
+            var p = document.createElement("H5");
+            var center = document.createElement("center");
+            var textnode = document.createTextNode("No Results found...");
+            p.appendChild(textnode);
+            center.append(p);
+            main[0].append(center);
+            throw Error(response.statusText);
+        }
+        return response;
+    }
+
+    function myFunction() {
+
+        var main = document.getElementsByClassName("main");
+        while (main[0].firstChild) {
+            main[0].removeChild(main[0].firstChild);
+        }
+        var searchtext = document.getElementById("textboxid").value;
+
+        //input search text
+        const url = "http://www.omdbapi.com/?apikey=a86083e1&t=" + searchtext.toString();
+
+        //resultset fetched from the API 
+        fetch(url).then(handleErrors).then((resp) => resp.json()).then(function(data) {
+                var s = JSON.stringify(data.Title);
+                if (s.search("defined")) {
+
+                    // the movie is append to a card
+                    var row = document.createElement("div");
+                    var col = document.createElement("div");
+                    var div = document.createElement("div");
+                    var imdiv = document.createElement("div");
+                    var a = document.createElement("A");
+                    row.className = "row";
+                    col.className = "column";
+                    div.className = "card ";
+                    imdiv.className = "imgcls";
+                    var node = document.createElement("H3");
+                    var textnode = document.createTextNode(data.Title);
+                    node.appendChild(textnode);
+                    a.append(node);
+                    main[0].appendChild(row);
+                    row.appendChild(col);
+                    col.appendChild(div);
+                    div.appendChild(a);
+                    a.appendChild(imdiv);
+                    imdiv.style.backgroundImage = "url(" + data.Poster + ")";
+                    imdiv.style.backgroundPosition = "center cover";
+                    imdiv.style.height = "220px";
+                    a.href = "movie.html?cname=" + data.Title;
+                    a.style.height = "190px";
+                }
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+</script>
+
+<body>
+    <div class="title">
+        <centre>
+            <h1>MovieWiki</h1>
+        </centre>
+    </div>
+    <div class="navbar">
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html">Back</a></li>
+        </ul>
+
+    </div>
+    <div class="search-container" style="align-items: center;">
+
+        <!-- input for movie name to search -->
+        <input id="textboxid" type="search" placeholder="Enter Movie Name" name="search" autofocus="autofocus" onSearch="myFunction()" required>
+        <button type="button" onclick="myFunction()"><i class="fa fa-search"></i></button>
+    </div>
+
+    </div>
+    <div class="result" style="margin-top: 5px;">
+        <h2>Movies Found</h2>
+    </div>
+    <div class="main">
+
+    </div>
+    <div class="footer">
+        Copyright by Priyadharshini
+    </div>
+</body>
+
+</html>
