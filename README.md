@@ -11,4 +11,4 @@ How to run?
   4. The single resultset matching the search keyword
   5. The movie.html page contains the deatisl of the movie
   
-API: "http://www.omdbapi.com/" OMBb API 
+API: "http://www.omdbapi.com/" (OMBb API)
