@@ -12,5 +12,3 @@ How to run?
   5. The movie.html page contains the deatisl of the movie
   
 API: "http://www.omdbapi.com/" OMBb API 
-
-Fetch() method was used to load the data from API
