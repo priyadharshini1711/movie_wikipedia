@@ -21,7 +21,7 @@
         }
 
         //fetching movie details
-        var url = "http://www.omdbapi.com/?&apikey=a86083e1&t=" + d.cname;
+        var url = "https://www.omdbapi.com/?&apikey=a86083e1&t=" + d.cname;
         fetch(url).then((response) => response.json()).then(function(data) {
                 document.getElementById("title").innerHTML = "Movie Name : " + data.Title;
                 document.getElementById("year").innerHTML = "Year : " + data.Year;
