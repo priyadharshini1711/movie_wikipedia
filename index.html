@@ -42,7 +42,7 @@
         var searchtext = document.getElementById("textboxid").value;
 
         //input search text
-        const url = "http://www.omdbapi.com/?apikey=a86083e1&s=" + searchtext.toString();
+        const url = "https://www.omdbapi.com/?apikey=a86083e1&s=" + searchtext.toString();
 
         //resultset fetched from the API 
         fetch(url).then(handleErrors).then((resp) => resp.json()).then(function(data) {
