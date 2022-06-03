@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="movie.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .imgcls {
+            object-fit: fill;
+        }
+    </style>
+</head>
+<script>
+    window.onload = function() {
+        var url = document.location.href,
+            d = {},
+            tmp;
+        params = url.split('?')[1].split('&');
+        for (var i = 0, l = params.length; i < l; i++) {
+            tmp = params[i].split('=');
+            d[tmp[0]] = tmp[1];
+        }
+
+        //fetching movie details
+        var url = "http://www.omdbapi.com/?&apikey=a86083e1&t=" + d.cname;
+        fetch(url).then((response) => response.json()).then(function(data) {
+                document.getElementById("title").innerHTML = "Movie Name : " + data.Title;
+                document.getElementById("year").innerHTML = "Year : " + data.Year;
+                document.getElementById("release").innerHTML = "Release : " + data.Released;
+                document.getElementById("rated").innerHTML = "Rated : " + data.Rated;
+                document.getElementById("runtime").innerHTML = "Runtime: " + data.Runtime;
+                document.getElementById("genre").innerHTML = "Genre : " + data.Genre;
+                document.getElementById("language").innerText = "Languages : " + data.Language;
+                document.getElementById("actors").innerText = "Actors : " + data.Actors;
+                document.getElementById("director").innerText = "Director : " + data.Director;
+                document.getElementById("writer").innerText = "Writer : " + data.Writer;
+                document.getElementById("plot").innerText = "Plot : " + data.Plot;
+                document.getElementById("imdbId").innerText = "Imbd ID : " + data.imdbID;
+                document.getElementById("imdbRating").innerText = "Imbd Rating : " + data.imdbRating;
+                document.getElementById("imdbVotes").innerText = "Imbd Votes : " + data.imdbVotes;
+                document.getElementById("production").innerText = "Production : " + data.Production;
+                document.getElementById("boxoffice").innerText = "Box Office : " + data.BoxOffice;
+                document.getElementById("awards").innerText = "Awards : " + data.Awards;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
+</script>
+
+<body>
+    <div class="title">
+        <centre>
+            <h1>MovieWiki</h1>
+        </centre>
+    </div>
+    
+    <div class="navbar">
+        <ul>
+            <li><a class="active" href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+
+    <!-- <button onclick="document.location='index.html'">Back</button> -->
+    <div class="container">
+        <div class="center">
+          <button onclick="document.location='index.html'">Back</button>
+        </div>
+      </div>
+    
+    <div class="main">
+        <div class="moviedetails">
+            <!-- contains movie details -->
+            <h1 id="title"></h1>
+            <h3 id="year"></h3>
+            <h3 id="runtime"></h3>
+            <h3 id="release"></h3>
+            <h3 id="rated"></h3>
+            <h3 id="genre"></h3>
+            <h3 id="release"></h3>
+            <h3 id="language"></h3>
+            <h3 id="actors"></h3>
+            <h3 id="director"></h3>
+            <h3 id="writer"></h3>
+            <h3 id="plot"></h3>
+            <h3 id="imdbId"></h3>
+            <h3 id="imdbRating"></h3>
+            <h3 id="ImbdVotes"></h3>
+            <h3 id="production"></h3>
+            <h3 id="boxoffice"></h3>
+            <h3 id="awards"></h3>
+        </div>
+    </div>
+    
+    <div class="footer">
+        Copyright by &#169;	Priyadharshini
+    </div>
+</body>
+
+</html>
