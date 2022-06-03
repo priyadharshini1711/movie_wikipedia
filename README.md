@@ -38,3 +38,7 @@
 ## Setup
 - clone or download the project.
 - Run index.html file to view the application.
+- enter the movie name and hit enter or search button.
+- The single resultset matching the search keyword.
+- The movie.html page contains the deatisl of the movie
+- API: "http://www.omdbapi.com/" (OMBb API)
